@@ -35,6 +35,18 @@ namespace SweetAndSavoryBakery.Controllers
 
             return View(product);
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult UpdateStock(int id, int newStock)
+        {
+            var product = db.Products.Find(id);
+            if (product != null)
+            {
+                product.Stock = newStock;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
 
     }
 }

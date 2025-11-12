@@ -1,0 +1,41 @@
+﻿@model SweetAndSavoryBakery.Models.Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm Admin";
+}
+
+<h2 class="text-center fw-bold mt-4">📋 Chi tiết Sản phẩm</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4 text-center">
+        @* Hiển thị ảnh sản phẩm *@
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow-sm" style="max-height: 300px; object-fit: cover;" />
+    </div>
+    <div class="col-md-8">
+        @* Sử dụng DL-Horizontal để hiển thị thông tin dạng key/value *@
+        <dl class="dl-horizontal">
+            <dt>Tên sản phẩm</dt>
+            <dd>@Model.Name</dd>
+
+            <dt>Loại</dt>
+            <dd>@Model.Category.Name</dd>
+
+            <dt>Giá</dt>
+            <dd class="fs-5 text-danger">@String.Format("{0:N0} VNĐ", @Model.Price)</dd>
+
+            <dt>Tồn kho</dt>
+            <dd class="fw-bold @(Model.Stock > 0 ? "text-success" : "text-danger")">@Model.Stock sản phẩm</dd>
+
+            <dt>Mô tả</dt>
+            <dd>@Model.Description</dd>
+
+        </dl>
+
+        <div class="mt-4">
+            @* Nút dẫn đến trang Chỉnh sửa *@
+            @Html.ActionLink("✏️ Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+            @* Nút Quay lại danh sách Admin *@
+            @Html.ActionLink("⬅️ Quay lại danh sách", "Index", null, new { @class = "btn btn-outline-secondary ms-2" })
+        </div>
+    </div>
+</div>

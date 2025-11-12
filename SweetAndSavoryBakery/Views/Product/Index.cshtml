@@ -37,8 +37,8 @@
                         <a href="@Url.Action("Details", "Product", new { id = item.Id })"
                            class="btn btn-outline-pink px-3 me-2">🔍 Xem chi tiết</a>
 
-                        <a href="@Url.Action("Add", "Cart", new { id = item.Id })"
-                           class="btn btn-pink px-3">🛒 Thêm giỏ hàng</a>
+                        <a href="@Url.Action("Add", "Cart", new { id = item.Id, quantity = 1 })" @* <--- THÊM quantity = 1 *@
+                           class="btn btn-pink px-3 btn-sm">🛒 Thêm giỏ hàng</a>
                     </div>
                 </div>
             </div>

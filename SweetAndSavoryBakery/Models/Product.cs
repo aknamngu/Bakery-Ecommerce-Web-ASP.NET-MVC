@@ -18,10 +18,11 @@ namespace SweetAndSavoryBakery.Models
 
         public string ImageUrl { get; set; }
         public int Stock { get; set; }
-
+        public bool IsFeatured { get; set; }
         // FK
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+       
     }
 }

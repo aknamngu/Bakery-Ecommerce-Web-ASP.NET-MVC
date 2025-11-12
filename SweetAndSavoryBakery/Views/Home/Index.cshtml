@@ -2,8 +2,34 @@
     ViewBag.Title = "Trang chủ";
 }
 
+
+
+
+@* Nội dung Trang Chủ ban đầu (Nằm dưới phần Slogan) *@
 <div class="text-center mt-4">
     <h1 class="fw-bold text-danger">Ngọt ngào mỗi ngày 🍓</h1>
     <p class="lead">Khám phá hương vị bánh ngọt và bánh mặn tuyệt vời tại Sweet & Savory Bakery 💕</p>
     <a href="/Product" class="btn btn-pink px-4 py-2 mt-3">Mua ngay</a>
 </div>
+
+@* --- PHẦN INTRO/SLOGAN MỚI --- *@
+<div class="slogan-section" style="background-color: #FFB6C1; color: #333; padding: 40px 0; margin-top: 20px;">
+    <div class="container">
+        <div class="row align-items-center">
+            @* Cột chứa Logo/Icon *@
+            <div class="col-md-2 text-center">
+                <img src="~/Images/SweetSavoryLogo.jpg" alt="Sweet & Savory Logo" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid white;" />            </div>
+
+            @* Cột chứa Nội dung Slogan *@
+            <div class="col-md-10" style="color: #333;">
+                @* Chuyển màu chữ sang đen đậm (#333) để nổi bật trên nền hồng nhạt *@
+                <h4 class="fw-bold mb-3">SWEET & SAVORY</h4>
+                <p>
+                    SWEET & SAVORY là tiệm bánh nhà làm với chất lượng tươi mới mỗi ngày. Chúng tôi mong nhận được sự phản hồi tích cực từ thực khách sau mỗi lần phục vụ.
+                    Tiệm bánh Sweet & Savory xin chân thành cảm ơn quý khách đã tin chọn và sử dụng sản phẩm của chúng tôi.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@* --- KẾT THÚC PHẦN INTRO/SLOGAN MỚI --- *@

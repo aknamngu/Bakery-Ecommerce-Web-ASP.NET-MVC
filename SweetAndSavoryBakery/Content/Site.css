@@ -29,3 +29,36 @@
         background-color: #ff8fab;
         color: #fff;
     }
+
+
+.fixed-contact-buttons {
+    position: fixed; /* Bắt buộc để cố định trên màn hình */
+    bottom: 20px; /* Cách đáy 20px */
+    right: 20px; /* Cách phải 20px (Chuyển sang bên phải) */
+    display: flex; /* Kích hoạt Flexbox */
+    flex-direction: column; /* Bắt buộc: Xếp chồng (nằm dọc) */
+    align-items: center; /* Căn giữa theo chiều ngang (nếu có) */
+    z-index: 1000; /* Đảm bảo nút nằm trên tất cả các lớp khác */
+}
+
+/* Kiểu cho Nút Zalo */
+.zalo-button img,
+.call-button img {
+    border-radius: 50%;
+    margin-bottom: 10px; /* Khoảng cách giữa nút Zalo và nút Gọi điện */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+/* Hiệu ứng khi di chuột */
+.zalo-button:hover img,
+.call-button:hover img {
+    transform: scale(1.1);
+}
+
+/* Kiểu nút Gọi điện (có thể thêm hiệu ứng ring) */
+.call-button img {
+    background-color: #d9534f; /* Màu đỏ nổi bật cho nút gọi */
+    padding: 10px;
+    width: 60px !important; /* Lớn hơn một chút */
+    height: 60px !important;
+}

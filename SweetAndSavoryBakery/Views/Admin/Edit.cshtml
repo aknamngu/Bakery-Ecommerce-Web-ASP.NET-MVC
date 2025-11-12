@@ -20,6 +20,13 @@
     </div>
 
     <div class="form-group mt-3">
+        <label>Mô tả sản phẩm</label>
+        @* Sử dụng Html.TextAreaFor để có ô nhập liệu lớn hơn *@
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 5 })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mt-3">
         <label>Loại bánh</label>
         @Html.DropDownList("CategoryId", null, "-- Chọn loại bánh --", new { @class = "form-control" })
     </div>

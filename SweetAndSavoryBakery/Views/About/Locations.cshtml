@@ -1,0 +1,78 @@
+﻿@model List<SweetAndSavoryBakery.Models.StoreLocation>
+@{
+    ViewBag.Title = "Địa Chỉ Cửa Hàng";
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-5" style="color: #d63384; font-weight: bold;">
+        HỆ THỐNG CỬA HÀNG CỦA CHÚNG TÔI 📍
+    </h2>
+
+    @* PHẦN HIỂN THỊ DANH SÁCH CHI NHÁNH *@
+    <div class="row">
+        @foreach (var location in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card p-4 h-100 border-pink-light">
+                    <h4 class="card-title" style="color: #d63384;">
+                        <i class="fas fa-store"></i> @location.Name
+                    </h4>
+                    <p>
+                        <strong><i class="fas fa-map-marker-alt"></i> Địa chỉ:</strong> @location.Address
+                    </p>
+                    <p>
+                        <strong><i class="fas fa-phone"></i> Điện thoại:</strong> <a href="tel:@location.Phone">@location.Phone</a>
+                    </p>
+                    <p>
+                        <strong><i class="fas fa-clock"></i> Giờ mở cửa:</strong> @location.WorkingHours
+                    </p>
+                    <div class="mt-auto">
+                        <a href="@location.MapUrl" target="_blank" class="btn btn-sm btn-pink">
+                            Xem trên Bản đồ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="my-5" />
+
+    @* Gợi ý: Thêm nhúng bản đồ Google Maps (iframe) ở đây nếu bạn muốn hiện bản đồ lớn tổng hợp *@
+    <h3 class="text-center mb-4" style="color: #d63384;">Bản đồ tổng hợp các chi nhánh</h3>
+    <div style="height: 480px; width: 100%; margin-bottom: 30px; border: 1px solid #ffb6c1; border-radius: 8px; overflow: hidden;">
+        @*
+            <iframe src="https://www.google.com/maps/d/embed?mid=158s1-EKy5nGw8NlALaSJ7WbmmYrC-EY&ehbc=2E312F" width="640" height="480"></iframe>
+        *@
+        <iframe src="https://www.google.com/maps/d/embed?mid=158s1-EKy5nGw8NlALaSJ7WbmmYrC-EY&ehbc=2E312F"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+</div>
+
+@section Scripts {
+    @* Style bổ sung (Bạn nên thêm vào Content/site.css) *@
+    <style>
+        .border-pink-light {
+            border: 1px solid #ffb6c1 !important;
+        }
+
+        .btn-pink { /* Đã có trong site.css, nhưng thêm lại để đảm bảo */
+            background-color: #ffb6c1;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-pink:hover {
+                background-color: #ff8fab;
+                color: #fff;
+            }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+}

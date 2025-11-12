@@ -20,8 +20,11 @@ namespace SweetAndSavoryBakery.Controllers
         }
 
         // Thêm sản phẩm
-        public ActionResult Add(int id)
+        public ActionResult Add(int id, int quantity = 1)
         {
+            // Cần đảm bảo quantity tối thiểu là 1 nếu người dùng không nhập
+            if (quantity < 1) quantity = 1;
+
             var product = db.Products.Find(id);
             if (product == null) return HttpNotFound();
 
@@ -29,25 +32,45 @@ namespace SweetAndSavoryBakery.Controllers
             var existing = cart.FirstOrDefault(c => c.ProductId == id);
 
             if (existing != null)
-                existing.Quantity++;
+            {
+                existing.Quantity += quantity;
+            }
             else
+            {
                 cart.Add(new CartItem
                 {
                     ProductId = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     ImageUrl = product.ImageUrl,
-                    Quantity = 1
+                    Quantity = quantity // LƯU SỐ LƯỢNG MỚI NHẬP
                 });
+            }
+
+            // TODO: Nên thêm logic kiểm tra tổng số lượng không vượt quá product.Stock
 
             return RedirectToAction("Index");
         }
+
+        private const decimal FREESHIP_THRESHOLD = 200000; // Ngưỡng freeship 200.000 VNĐ
+        private const decimal SHIPPING_FEE = 30000;       // Phí ship mặc định 30.000 VNĐ
 
         // Hiển thị giỏ hàng
         public ActionResult Index()
         {
             var cart = GetCart();
-            ViewBag.Total = cart.Sum(x => x.Quantity * x.Price);
+            decimal subTotal = cart.Sum(x => x.Quantity * x.Price);
+
+            // Tính phí vận chuyển và tổng cuối cùng
+            decimal shippingFee = (subTotal >= FREESHIP_THRESHOLD) ? 0 : SHIPPING_FEE;
+            decimal finalTotal = subTotal + shippingFee;
+
+            // Truyền dữ liệu cần thiết sang View
+            ViewBag.SubTotal = subTotal;
+            ViewBag.ShippingFee = shippingFee;
+            ViewBag.FinalTotal = finalTotal;
+            ViewBag.IsFreeShip = (shippingFee == 0);
+            ViewBag.FREESHIP_THRESHOLD = FREESHIP_THRESHOLD;
             return View(cart);
         }
 
@@ -63,7 +86,7 @@ namespace SweetAndSavoryBakery.Controllers
         // Thanh toán
         public ActionResult Checkout()
         {
-            ViewBag.Total = GetCart().Sum(x => x.Quantity * x.Price);
+            Index();
             return View();
         }
     }

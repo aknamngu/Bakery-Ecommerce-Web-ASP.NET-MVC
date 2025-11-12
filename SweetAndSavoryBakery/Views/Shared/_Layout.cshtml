@@ -11,7 +11,8 @@
     <nav class="navbar navbar-expand-lg" style="background-color:#ffb6c1; padding: 10px 0;">
         <div class="container">
             <a class="navbar-brand fw-bold text-white" href="/">
-                🍰 Sweet & Savory
+                <img src="~/Images/SweetSavoryLogo.jpg" alt="Sweet & Savory" style="height: 30px; margin-right: 5px;" />
+                Sweet & Savory
             </a>
 
             <ul class="nav navbar-nav">
@@ -20,6 +21,9 @@
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Sản phẩm", "Index", "Product", null, new { @class = "nav-link text-white fw-semibold" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Địa chỉ quán", "Locations", "About", null, new { @class = "nav-link text-white fw-semibold" })
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Giỏ hàng", "Index", "Cart", null, new { @class = "nav-link text-white fw-semibold" })
@@ -77,5 +81,19 @@
     </div>
 
     @RenderSection("Scripts", required: false)
+    @* --- NÚT GỌI ĐIỆN VÀ ZALO NỔI BẬT --- *@
+    <div class="fixed-contact-buttons">
+
+        @* Nút Zalo - Thay thế [SỐ ĐIỆN THOẠI CỦA BẠN] *@
+        <a href="https://zalo.me/0987083644" target="_blank" class="zalo-button">
+            <img src="~/Images/zalo_icon.jpg" alt="Zalo" style="width: 50px; height: 50px;" />
+        </a>
+
+        @* Nút Gọi điện - Thay thế [SỐ ĐIỆN THOẠI CỦA BẠN] *@
+        <a href="tel:0987083644" class="call-button">
+            <img src="~/Images/call_icon.png" alt="Call" style="width: 50px; height: 50px;" />
+        </a>
+    </div>
+    @* --- KẾT THÚC NÚT LIÊN HỆ --- *@
 </body>
 </html>

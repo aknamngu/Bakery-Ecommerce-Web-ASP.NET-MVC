@@ -112,6 +112,24 @@ namespace SweetAndSavoryBakery.Controllers
             }
             return RedirectToAction("Index");
         }
+        // GET: Admin/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            // Đảm bảo Product được tải cùng với Category
+            var product = db.Products.Include(p => p.Category).SingleOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+        }
 
     }
 }
